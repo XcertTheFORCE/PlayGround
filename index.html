@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071116">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>Nightline Freight — Neon Hauler</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Nightline Freight home">
+        <span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 20.5 9.5 8h13l5.5 12.5h-4.1a4 4 0 0 0-7.8 0h-4.2a4 4 0 0 0-7.8 0H4Z"/><path d="M12 12h8l2.4 5H9.8l2.2-5Z"/><circle cx="8" cy="22" r="2.3"/><circle cx="20" cy="22" r="2.3"/></svg></span>
+        <span class="brand-copy"><strong>NIGHTLINE<span> / </span>FREIGHT</strong><small>NEON CITY LOGISTICS</small></span>
+      </a>
+      <div class="top-status"><span class="status-pulse"></span> FLEET NETWORK ONLINE <span class="status-divider"></span><span id="clock">23:48</span></div>
+      <div class="player-stats">
+        <div class="level-badge"><span>LVL</span><strong id="level">01</strong></div>
+        <div class="xp-wrap"><div class="xp-label"><span>DRIVER XP</span><b id="xp-label">0 / 100</b></div><div class="xp-track"><i id="xp-fill"></i></div></div>
+        <div class="credits"><span class="credit-icon">◈</span><strong id="credits">420</strong><small>CR</small></div>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="panel contracts-panel" aria-labelledby="contracts-title">
+        <div class="panel-heading">
+          <div><span class="kicker">DISPATCH / 07</span><h2 id="contracts-title">Open contracts</h2></div>
+          <span class="live-tag"><i></i> LIVE</span>
+        </div>
+        <p class="panel-subtitle">Choose a load for tonight's run.</p>
+        <div class="contract-list" id="contract-list"></div>
+        <div class="dispatch-note"><span class="note-icon">✳</span><p><strong>Night shift bonus</strong><br>Complete a delivery before dawn for +15% credits.</p></div>
+      </section>
+
+      <section class="main-column">
+        <div class="stage-topline">
+          <div class="route-heading"><span class="kicker">YOUR ROUTE / <span id="route-id">N-01</span></span><h1><span id="origin-name">DOCK 09</span><span class="route-arrow">↗</span><span id="destination-name">LUMEN HEIGHTS</span></h1></div>
+          <div class="weather"><span class="weather-icon">◒</span><div><b>ACID RAIN</b><small>LIGHT · 18°</small></div></div>
+        </div>
+        <div class="drive-stage" id="drive-stage">
+          <canvas id="game-canvas" aria-label="Neon city delivery driving game"></canvas>
+          <div class="scene-vignette"></div>
+          <div class="stage-hud stage-hud-left"><span class="hud-label">DELIVERY STATUS</span><strong id="mission-status">AWAITING DISPATCH</strong><div class="route-progress"><i id="route-progress-fill"></i></div><small id="distance-label">0.0 <span>/</span> 2.4 KM</small></div>
+          <div class="stage-hud stage-hud-right"><span class="hud-label">CARGO INTEGRITY</span><strong><span id="integrity-value">100</span><small>%</small></strong><div class="integrity-track"><i id="integrity-fill"></i></div></div>
+          <div class="stage-center-message" id="stage-message"><span class="message-tag">YOUR FIRST RUN STARTS HERE</span><h2>Own the night.</h2><p>Keep it clean. Bring it home.</p><button class="primary-button" id="start-button"><span>START DELIVERY</span><b>↗</b></button></div>
+          <div class="arrival-banner hidden" id="arrival-banner"><span class="arrival-check">✓</span><div><small>DESTINATION REACHED</small><strong>LOAD DELIVERED</strong></div></div>
+          <div class="stage-bottom-left"><span class="road-dot"></span><span id="sector-label">LOWER DOCKS · SECTOR 09</span></div>
+          <div class="speedometer"><div class="speedometer-ring"><strong id="speed-value">000</strong><small>KM/H</small></div><span class="gear-label">GEAR <b id="gear-value">N</b></span></div>
+          <div class="touch-controls" aria-label="Driving controls"><button data-drive="left" aria-label="Steer left">◀</button><button data-drive="brake" aria-label="Brake">▼</button><button data-drive="boost" aria-label="Boost">⚡</button><button data-drive="right" aria-label="Steer right">▶</button></div>
+          <div class="pause-chip hidden" id="pause-chip">Ⅱ &nbsp; PAUSED</div>
+        </div>
+        <div class="stage-footer"><div class="control-hint"><span class="keycap">←</span><span class="keycap">→</span> STEER <span class="hint-sep"></span><span class="keycap">↑</span> ACCELERATE <span class="hint-sep"></span><span class="keycap">SPACE</span> BOOST</div><button class="pause-button" id="pause-button" disabled><span>Ⅱ</span> PAUSE <span class="keycap">P</span></button></div>
+      </section>
+
+      <aside class="panel loadout-panel">
+        <div class="panel-heading">
+          <div><span class="kicker">FLEET / VEHICLE 001</span><h2>Starter rig</h2></div>
+          <span class="vehicle-status">READY</span>
+        </div>
+        <div class="truck-card">
+          <div class="truck-art"><div class="truck-glow"></div><svg viewBox="0 0 300 145" role="img" aria-label="Starter semi truck with cargo trailer"><defs><linearGradient id="trailer" x1="0" x2="1"><stop stop-color="#19353b"/><stop offset="1" stop-color="#0c2027"/></linearGradient><linearGradient id="cab" x1="0" x2="1"><stop stop-color="#61efc2"/><stop offset="1" stop-color="#27ad9e"/></linearGradient></defs><path class="truck-shadow" d="M28 115h235v12H28z"/><path class="trailer" d="M27 27h158v78H27z"/><path class="trailer-line" d="M37 39h137M37 47h137M37 55h137"/><path class="trailer-mark" d="M83 69h36l-18 17H65z"/><path class="cab" d="M188 68h43l20 19v18h-63z"/><path class="cab-window" d="M197 74h21v17h-25zM222 74h5l15 15h-20z"/><path class="bumper" d="M248 95h12v10h-12z"/><path class="wheel" d="M48 99a13 13 0 1 0 26 0 13 13 0 0 0-26 0Zm34 0a13 13 0 1 0 26 0 13 13 0 0 0-26 0Zm94 0a13 13 0 1 0 26 0 13 13 0 0 0-26 0Zm53 0a13 13 0 1 0 26 0 13 13 0 0 0-26 0Z"/><circle class="wheel-hub" cx="61" cy="99" r="4"/><circle class="wheel-hub" cx="95" cy="99" r="4"/><circle class="wheel-hub" cx="189" cy="99" r="4"/><circle class="wheel-hub" cx="242" cy="99" r="4"/><path class="light-beam" d="M256 91h19v3h-19z"/></svg><span class="truck-class">MK-I · LONGHAUL</span></div>
+          <div class="truck-name"><strong>Wayfarer 8×4</strong><span>FREE STARTER TRUCK</span></div>
+          <div class="truck-metrics"><div><span>TOP SPEED</span><b id="top-speed">180 <small>KM/H</small></b></div><div><span>HANDLING</span><b id="handling-value">★★<i>☆☆☆</i></b></div><div><span>ARMOR</span><b id="armor-value">01</b></div></div>
+        </div>
+        <div class="cargo-section"><div class="section-label"><span>ASSIGNED CARGO</span><span class="cargo-lock" id="cargo-level">LVL 01</span></div><div class="cargo-type"><span class="cargo-icon" id="cargo-icon">▦</span><div><strong id="cargo-name">Civic essentials</strong><small id="cargo-desc">SEALED PARCELS · STANDARD</small></div></div><div class="cargo-tags"><span id="weight-tag">3.2 TONS</span><span id="cargo-tag">FRAGILE</span></div></div>
+        <div class="upgrade-section"><div class="section-label"><span>RIG UPGRADES</span><span class="upgrade-count" id="upgrade-count">0 / 3</span></div><div class="upgrade-row"><span class="upgrade-icon">⌁</span><div><strong>Reinforced suspension</strong><small>Less cargo damage on impact</small></div><button id="upgrade-button" class="upgrade-button">180 <small>CR</small></button></div><p class="upgrade-feedback" id="upgrade-feedback">YOUR RIG IS IN FACTORY SPEC.</p></div>
+      </aside>
+    </main>
+    <footer class="bottomline"><span>© 2089 NIGHTLINE FREIGHT CO.</span><span>KEEP THE CITY MOVING <i>✦</i></span><span>BUILD 4.08.89 <b>●</b></span></footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop hidden" id="result-modal"><div class="result-card"><button class="modal-close" id="modal-close" aria-label="Close">×</button><span class="result-kicker">NIGHTLINE FREIGHT · DELIVERY REPORT</span><div class="result-icon" id="result-icon">✦</div><h2 id="result-title">RUN COMPLETE</h2><p id="result-copy">A clean delivery. The city keeps moving.</p><div class="result-rewards"><div><small>DRIVER XP</small><strong id="reward-xp">+80 XP</strong></div><div><small>PAID OUT</small><strong id="reward-credits">+120 CR</strong></div><div><small>INTEGRITY</small><strong id="reward-integrity">100%</strong></div></div><button class="primary-button result-button" id="continue-button"><span>BACK TO DISPATCH</span><b>↗</b></button></div></div>
+  <script type="module" src="world3d.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
